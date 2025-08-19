@@ -1,0 +1,32 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+pubspec.lock
+
+# IDE
+.idea/
+*.iml
+*.log
+*.tmp
+*.swp
+
+# OS / Desktop
+linux/
+macos/
+windows/
+
+# Git
+.git/
+
+# Misc / temp
+aesthetic/
+*.lock
+*.log
+
+# Keep fonts, assets, lib, android, ios, test, pubspec.yaml, README.md
+# All other generated or unnecessary files will be ignored

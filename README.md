@@ -17,7 +17,10 @@ This Flutter app is a bilingual (English/Arabic) shopping application that allow
 ## Setup Instructions
 1. Clone the repository:
 ```bash
-git clone https://github.com/haneen304/HaneenAyman_shoppingApp.git
+ git clone https://github.com/haneen304/HaneenAyman_shoppingApp.git
+ Navigate into the project folder: cd HaneenAyman_shoppingApp 
+ Install dependencies: flutter pub get  
+ Launch the app: flutter run
 
 ## Screenshots
 
@@ -60,19 +63,3 @@ To maintain high code quality, the following practices are applied in this proje
 - ✅ **Readability & Maintainability**: Code is reviewed to ensure clarity, simplicity, and easy future extensions.
 
 These steps ensure the project is easy to read, maintain, and extend.
-
----
-
-## 🔍 How to Check Code Quality
-
-You can re-verify the quality of this project using the following commands:
-
-```bash
-# Step 1: Check formatting of all Dart files
-dart format --output=none --set-exit-if-changed .
-
-# Step 2: Run Flutter static analysis
-flutter analyze
-
-# Step 3: Build and run the app to ensure it works correctly
-flutter run

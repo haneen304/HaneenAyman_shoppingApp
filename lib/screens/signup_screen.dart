@@ -24,8 +24,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final isArabic = _language == 'AR';
     final titleText = isArabic ? 'إنشاء حساب' : 'Sign Up';
-    final switchText =
-        isArabic ? 'لديك حساب؟ تسجيل الدخول' : 'Already have an account? Sign In';
+    final switchText = isArabic
+        ? 'لديك حساب؟ تسجيل الدخول'
+        : 'Already have an account? Sign In';
 
     return Scaffold(
       appBar: AppBar(
@@ -56,20 +57,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: isArabic ? 'الاسم' : 'Name'),
+                decoration: InputDecoration(
+                  labelText: isArabic ? 'الاسم' : 'Name',
+                ),
                 validator: (value) {
-                  if (value == null || value.isEmpty) return isArabic ? 'الرجاء إدخال الاسم' : 'Enter name';
-                  if (value.length < 3) return isArabic ? 'الاسم قصير جداً' : 'Name too short';
+                  if (value == null || value.isEmpty) {
+                    return isArabic ? 'الرجاء إدخال الاسم' : 'Enter name';
+                  }
+                  if (value.length < 3) {
+                    return isArabic ? 'الاسم قصير جداً' : 'Name too short';
+                  }
                   return null;
                 },
               ),
               const SizedBox(height: 15),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: isArabic ? 'البريد الإلكتروني' : 'Email'),
+                decoration: InputDecoration(
+                  labelText: isArabic ? 'البريد الإلكتروني' : 'Email',
+                ),
                 validator: (value) {
-                  if (value == null || value.isEmpty) return isArabic ? 'الرجاء إدخال البريد الإلكتروني' : 'Enter email';
-                  if (!value.contains('@')) return isArabic ? 'البريد الإلكتروني غير صالح' : 'Invalid email';
+                  if (value == null || value.isEmpty) {
+                    return isArabic
+                        ? 'الرجاء إدخال البريد الإلكتروني'
+                        : 'Enter email';
+                  }
+                  if (!value.contains('@')) {
+                    return isArabic
+                        ? 'البريد الإلكتروني غير صالح'
+                        : 'Invalid email';
+                  }
                   return null;
                 },
               ),
@@ -77,10 +94,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: isArabic ? 'كلمة المرور' : 'Password'),
+                decoration: InputDecoration(
+                  labelText: isArabic ? 'كلمة المرور' : 'Password',
+                ),
                 validator: (value) {
-                  if (value == null || value.isEmpty) return isArabic ? 'الرجاء إدخال كلمة المرور' : 'Enter password';
-                  if (value.length < 6) return isArabic ? 'كلمة المرور قصيرة جداً' : 'Password too short';
+                  if (value == null || value.isEmpty) {
+                    return isArabic
+                        ? 'الرجاء إدخال كلمة المرور'
+                        : 'Enter password';
+                  }
+                  if (value.length < 6) {
+                    return isArabic
+                        ? 'كلمة المرور قصيرة جداً'
+                        : 'Password too short';
+                  }
                   return null;
                 },
               ),
@@ -95,9 +122,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
-                    minimumSize: const Size(double.infinity, 50)),
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(double.infinity, 50),
+                ),
                 child: Text(titleText),
               ),
               const SizedBox(height: 15),
@@ -108,7 +136,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     MaterialPageRoute(builder: (_) => const SignInScreen()),
                   );
                 },
-                child: Text(switchText, style: const TextStyle(color: Colors.blue)),
+                child: Text(
+                  switchText,
+                  style: const TextStyle(color: Colors.blue),
+                ),
               ),
             ],
           ),

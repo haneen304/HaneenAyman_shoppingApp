@@ -5,8 +5,9 @@ import 'package:aesthetic_shop/models/product.dart';
 import 'package:aesthetic_shop/localization/app_localizations.dart';
 
 void main() {
-  testWidgets('Full app widget test: Welcome -> HomeScreen -> Add to Cart',
-      (WidgetTester tester) async {
+  testWidgets('Full app widget test: Welcome -> HomeScreen -> Add to Cart', (
+    WidgetTester tester,
+  ) async {
     // Launch the app
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
@@ -40,8 +41,9 @@ void main() {
       expect(find.text(loc.translate(product.id)), findsWidgets);
 
       final gridButton = find.descendant(
-          of: find.widgetWithText(Card, loc.translate(product.id)),
-          matching: find.byIcon(Icons.add_shopping_cart));
+        of: find.widgetWithText(Card, loc.translate(product.id)),
+        matching: find.byIcon(Icons.add_shopping_cart),
+      );
       expect(gridButton, findsOneWidget);
 
       await tester.tap(gridButton);
@@ -56,10 +58,15 @@ void main() {
       expect(find.text(loc.translate(offer.id)), findsWidgets);
 
       final offerCard = find.byWidgetPredicate(
-          (widget) => widget is Card && widget.child != null && widget.child.toString().contains(loc.translate(offer.id)));
+        (widget) =>
+            widget is Card &&
+            widget.child != null &&
+            widget.child.toString().contains(loc.translate(offer.id)),
+      );
       final offerButton = find.descendant(
-          of: offerCard,
-          matching: find.byIcon(Icons.add_shopping_cart));
+        of: offerCard,
+        matching: find.byIcon(Icons.add_shopping_cart),
+      );
       expect(offerButton, findsOneWidget);
 
       await tester.tap(offerButton);

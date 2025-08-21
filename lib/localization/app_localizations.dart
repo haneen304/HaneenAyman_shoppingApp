@@ -18,7 +18,9 @@ class AppLocalizations {
     );
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
-    _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
+    _localizedStrings = jsonMap.map(
+      (key, value) => MapEntry(key, value.toString()),
+    );
     return true;
   }
 
@@ -38,10 +40,12 @@ class AppLocalizations {
   String get signIn => translate('sign_in');
   String get signUp => translate('sign_up');
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override

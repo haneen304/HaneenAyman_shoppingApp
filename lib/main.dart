@@ -35,10 +35,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Aesthetic Shop',
       debugShowCheckedModeBanner: false,
       locale: _locale,
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ar'),
-      ],
+      supportedLocales: const [Locale('en'), Locale('ar')],
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

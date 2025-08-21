@@ -37,7 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     setState(() {});
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(loc.addedToCart), duration: const Duration(seconds: 2)),
+      SnackBar(
+        content: Text(loc.addedToCart),
+        duration: const Duration(seconds: 2),
+      ),
     );
   }
 
@@ -45,13 +48,19 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text(loc.translate('cart') == 'cart' ? 'Cart' : loc.translate('cart')),
+        title: Text(
+          loc.translate('cart') == 'cart' ? 'Cart' : loc.translate('cart'),
+        ),
         content: SizedBox(
           width: double.maxFinite,
           child: _cart.isEmpty
-              ? Text(loc.translate('cart_empty') == 'cart_empty'
-                  ? (currentLang == 'ar' ? 'السلة فارغة' : 'Your cart is empty')
-                  : loc.translate('cart_empty'))
+              ? Text(
+                  loc.translate('cart_empty') == 'cart_empty'
+                      ? (currentLang == 'ar'
+                            ? 'السلة فارغة'
+                            : 'Your cart is empty')
+                      : loc.translate('cart_empty'),
+                )
               : ListView.builder(
                   shrinkWrap: true,
                   itemCount: _cart.length,
@@ -59,14 +68,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     final item = _cart[index];
                     return ListTile(
                       dense: true,
-                      leading: Image.asset(item['imageUrl'], width: 46, height: 46, fit: BoxFit.cover),
+                      leading: Image.asset(
+                        item['imageUrl'],
+                        width: 46,
+                        height: 46,
+                        fit: BoxFit.cover,
+                      ),
                       title: Text(
                         loc.translate(item['titleKey']),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      trailing: Text(_money(item['price'] as double),
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      trailing: Text(
+                        _money(item['price'] as double),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     );
                   },
                 ),
@@ -75,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(currentLang == 'ar' ? 'إغلاق' : 'Close'),
-          )
+          ),
         ],
       ),
     );
@@ -126,14 +142,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   right: 8,
                   top: 8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.redAccent,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
                       _cart.length.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -143,7 +166,10 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: _toggleLanguage,
             child: Text(
               currentLang == 'en' ? loc.languageArabic : loc.languageEnglish,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
@@ -158,7 +184,11 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
               child: Text(
                 loc.featured,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: _textDark),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: _textDark,
+                ),
               ),
             ),
             SizedBox(
@@ -173,12 +203,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Card(
                       color: _cardBg,
                       elevation: 5,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                       child: Stack(
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(16),
-                            child: Image.asset(item.imageUrl, fit: BoxFit.cover, width: double.infinity),
+                            child: Image.asset(
+                              item.imageUrl,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
                           ),
                           // name chip
                           Positioned(
@@ -187,7 +223,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: _pill(
                               child: Text(
                                 loc.translate(item.titleKey),
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -198,7 +236,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: _pill(
                               child: Text(
                                 _money(item.price),
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -217,7 +257,11 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Text(
                 loc.ourProducts,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: _textDark),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: _textDark,
+                ),
               ),
             ),
             Padding(
@@ -225,7 +269,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: products.length, // order: tshirt, trousers, sunglasses, backpack
+                itemCount: products
+                    .length, // order: tshirt, trousers, sunglasses, backpack
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.72,
@@ -237,15 +282,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Card(
                     color: _cardBg,
                     elevation: 3,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     child: Column(
                       children: [
                         Expanded(
                           child: Stack(
                             children: [
                               ClipRRect(
-                                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                                child: Image.asset(item.imageUrl, fit: BoxFit.cover, width: double.infinity),
+                                borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(12),
+                                ),
+                                child: Image.asset(
+                                  item.imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
                               ),
                               // price on photo
                               Positioned(
@@ -254,7 +307,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: _pill(
                                   child: Text(
                                     _money(item.price),
-                                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -262,11 +318,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 6),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 6.0,
+                            horizontal: 6,
+                          ),
                           child: Text(
                             loc.translate(item.titleKey),
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: _textDark),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: _textDark,
+                            ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -279,11 +342,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _blue,
                               minimumSize: const Size(110, 32),
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
-                            icon: const Icon(Icons.add_shopping_cart, size: 16, color: Colors.white),
-                            label: Text(loc.addToCart, style: const TextStyle(fontSize: 12, color: Colors.white)),
+                            icon: const Icon(
+                              Icons.add_shopping_cart,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                            label: Text(
+                              loc.addToCart,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -300,7 +377,11 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Text(
                 loc.hotOffers,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: _textDark),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: _textDark,
+                ),
               ),
             ),
             Padding(
@@ -308,9 +389,12 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: offers.map((item) {
                   final discount = _discountForOffer(item.titleKey);
-                  final double newPrice = item.price; // your list holds the discounted price
+                  final double newPrice =
+                      item.price; // your list holds the discounted price
                   final double? oldPrice =
-                      (discount != null && discount > 0 && discount < 1) ? (newPrice / (1 - discount)) : null;
+                      (discount != null && discount > 0 && discount < 1)
+                      ? (newPrice / (1 - discount))
+                      : null;
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
@@ -319,12 +403,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         Card(
                           color: _cardBg,
                           elevation: 4,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                           child: Stack(
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
-                                child: Image.asset(item.imageUrl, fit: BoxFit.cover, height: 180, width: double.infinity),
+                                child: Image.asset(
+                                  item.imageUrl,
+                                  fit: BoxFit.cover,
+                                  height: 180,
+                                  width: double.infinity,
+                                ),
                               ),
                               // offer title chip (one clean title — no duplicates)
                               Positioned(
@@ -333,7 +424,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: _pill(
                                   child: Text(
                                     loc.translate(item.titleKey),
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -342,7 +436,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 bottom: 8,
                                 left: 8,
                                 child: Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 4,
+                                    horizontal: 8,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withValues(alpha: 0.92),
                                     borderRadius: BorderRadius.circular(10),
@@ -356,11 +453,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                           style: const TextStyle(
                                             color: Colors.black54,
                                             fontSize: 13,
-                                            decoration: TextDecoration.lineThrough,
-                                            decorationThickness: 1, // subtle line so price still readable
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            decorationThickness:
+                                                1, // subtle line so price still readable
                                           ),
                                         ),
-                                      if (oldPrice != null) const SizedBox(width: 8),
+                                      if (oldPrice != null)
+                                        const SizedBox(width: 8),
                                       Text(
                                         _money(newPrice),
                                         style: TextStyle(
@@ -382,17 +482,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           right: 12,
                           child: ElevatedButton.icon(
                             onPressed: () => _addToCart(item, loc),
-                            icon: const Icon(Icons.add_shopping_cart, size: 16, color: Colors.white),
+                            icon: const Icon(
+                              Icons.add_shopping_cart,
+                              size: 16,
+                              color: Colors.white,
+                            ),
                             label: Text(
                               loc.addToCart,
-                              style: const TextStyle(fontSize: 11, color: Colors.white),
+                              style: const TextStyle(
+                                fontSize: 11,
+                                color: Colors.white,
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _blue,
                               minimumSize: const Size(110, 32),
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               elevation: 3,
                             ),
                           ),
